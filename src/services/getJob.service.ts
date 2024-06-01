@@ -42,7 +42,7 @@ class JobService {
 			error,
 			mutate,
 			isLoading,
-		}: { data: IDataFetch; error: any; mutate: any; isLoading: any } = useSWR(
+		}: { data: ISearchFetch; error: any; mutate: any; isLoading: any } = useSWR(
 			url,
 			(url: any) => this.fetcher(url, { query: query, page: page }),
 			{
@@ -59,7 +59,7 @@ class JobService {
 			error,
 			mutate,
 			isLoading,
-		}: { data: IDataFetch; error: any; mutate: any; isLoading: any } = useSWR(
+		}: { data: ISearchFetch; error: any; mutate: any; isLoading: any } = useSWR(
 			url,
 			(url: any) => this.fetcher(url, { job_id: jobId }),
 			{

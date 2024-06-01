@@ -2,11 +2,12 @@
 
 import { Form, Formik } from 'formik'
 import { useEffect, useState } from 'react'
+import MyButton from '../../../components/button/MyButton'
 import JobCard from '../../../components/cards/job-card'
 import TextInputs from '../../../components/inputs/text-inputs'
 import jobService from '../../../services/getJob.service'
 
-const JobsPage = () => {
+export default function JobsPage() {
 	const [query, setQuery] = useState('')
 	const [page, setPage] = useState(1)
 
@@ -45,12 +46,7 @@ const JobsPage = () => {
 						type='text'
 						placeholder='Search for jobs'
 					/>
-					<button
-						className='mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-						type='submit'
-					>
-						Search
-					</button>
+					<MyButton text='Search' />
 				</Form>
 			</Formik>
 
@@ -62,25 +58,11 @@ const JobsPage = () => {
 						<JobCard key={job.job_id} {...job} />
 					))}
 					<div className='flex m-5'>
-						<button
-							className='mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-							type='button'
-							onClick={nextPage}
-						>
-							Next page
-						</button>
-						<button
-							className='mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-							type='button'
-							onClick={previousPage}
-						>
-							Previous page
-						</button>
+						<MyButton text='Next page' handle={nextPage} />
+						<MyButton text='Previous page' handle={previousPage} />
 					</div>
 				</div>
 			)}
 		</div>
 	)
 }
-
-export default JobsPage

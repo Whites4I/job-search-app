@@ -3,4 +3,5 @@ interface IDataJob {
 	employer_name: string
 	job_id: string
 	job_description: string
+	employer_logo?: string
 }

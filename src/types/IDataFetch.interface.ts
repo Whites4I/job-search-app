@@ -1,4 +1,4 @@
-interface IDataFetch {
+interface ISearchFetch {
 	data: IDataJob[]
 	parameters: object
 	status: string
