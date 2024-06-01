@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"forceConsistentCasingInFileNames": true, //Case checking is included to avoid problems in the future
+		"allowImportingTsExtensions": true, //Allows import of various extensions
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
