@@ -1,6 +1,6 @@
-// interface IDataJob {
-// 	title: string
-// 	company_name: string
-// 	id: string
-// 	description: string
-// }
+interface IDataJob {
+	job_title: string
+	employer_name: string
+	job_id: string
+	job_description: string
+}
