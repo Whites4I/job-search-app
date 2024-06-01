@@ -28,32 +28,45 @@ class JobService {
 		}
 	}
 
-	private async fetcher(url: any, params: { query?: any; job_id?: any }) {
+	private async fetcher(
+		url: any,
+		params: { query?: any; job_id?: any; page?: any }
+	) {
 		return this.fetchData(url, params)
 	}
 
-	getJobsData(query: any | unknown | string) {
+	getJobsData(query: any | unknown | string, page: any | unknown | string) {
 		const url = `${this.apiUrl}/search?`
-		const { data, error }: IDataFetch = useSWR(
+		const {
+			data,
+			error,
+			mutate,
+			isLoading,
+		}: { data: IDataFetch; error: any; mutate: any; isLoading: any } = useSWR(
 			url,
-			(url: any) => this.fetcher(url, { query: query }),
+			(url: any) => this.fetcher(url, { query: query, page: page }),
 			{
 				shouldRetryOnError: false,
 			}
 		)
-		return { data, error }
+		return { data, error, mutate, isLoading }
 	}
 
 	getJobDetail(jobId: any | unknown | string) {
 		const url = `${this.apiUrl}/job-details?`
-		const { data, error }: IDataFetch = useSWR(
+		const {
+			data,
+			error,
+			mutate,
+			isLoading,
+		}: { data: IDataFetch; error: any; mutate: any; isLoading: any } = useSWR(
 			url,
 			(url: any) => this.fetcher(url, { job_id: jobId }),
 			{
 				shouldRetryOnError: false,
 			}
 		)
-		return { data, error }
+		return { data, error, mutate, isLoading }
 	}
 }
 

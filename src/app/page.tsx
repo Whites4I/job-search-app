@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 export default function Home() {
 	return (
-		<div>
-			<h1 className='text-3xl font-bold mb-6'>Job Search Application</h1>
+		<div className='flex flex-col items-center'>
+			<h1 className=' text-3xl font-bold mb-6'>Job Search Application</h1>
 			<div className='space-x-4'>
 				<Link className='px-4 py-2 bg-blue-500 text-white rounded' href='/jobs'>
 					Search Jobs
