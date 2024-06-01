@@ -1,3 +1,0 @@
-interface IDataJobs {
-	data: IDataJob[]
-}
