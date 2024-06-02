@@ -1,17 +1,23 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 export default function useLikedJobs() {
 	const [likedJobs, setLikedJobs] = useState<IDataJob[]>([])
 
 	useEffect(() => {
-		const storedJobs = localStorage.getItem('likedJobs')
-		if (storedJobs) {
-			setLikedJobs(JSON.parse(storedJobs))
+		if (typeof window !== 'undefined') {
+			const storedJobs = localStorage.getItem('likedJobs')
+			if (storedJobs) {
+				setLikedJobs(JSON.parse(storedJobs))
+			}
 		}
 	}, [])
 
 	useEffect(() => {
-		localStorage.setItem('likedJobs', JSON.stringify(likedJobs))
+		if (typeof window !== 'undefined') {
+			localStorage.setItem('likedJobs', JSON.stringify(likedJobs))
+		}
 	}, [likedJobs])
 
 	const addToLiked = (job: IDataJob) => {
