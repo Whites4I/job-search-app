@@ -1,6 +1,6 @@
 interface IMyButton {
 	text?: string
-	handle?: () => void
+	handle: () => void
 	options?: any
 }
 

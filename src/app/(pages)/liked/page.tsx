@@ -14,7 +14,7 @@ const LikedJobs = () => {
 					{likedJobs.map(job => (
 						<div key={job.id} className='p-4 border rounded shadow-md mb-4'>
 							<h2 className='text-xl font-bold'>{job.title}</h2>
-							<MyButton text='Remove' handle={removeFromLiked(job.id)} />
+							<MyButton text='Remove' handle={() => removeFromLiked(job.id)} />
 						</div>
 					))}
 				</div>
