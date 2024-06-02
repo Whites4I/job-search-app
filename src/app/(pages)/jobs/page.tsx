@@ -41,9 +41,9 @@ export default function JobsPage() {
 	return (
 		<div className='p-4 w-3/12 max-w-lg min-w-96'>
 			<Formik initialValues={{ query: '' }} onSubmit={handleSubmit}>
-				<Form className='mb-4'>
+				<Form className='mb-4  text-black'>
 					<TextInputs
-						className='p-2 border rounded w-full text-black'
+						className='p-2 border rounded w-full'
 						name='query'
 						type='text'
 						placeholder='Search for jobs'
