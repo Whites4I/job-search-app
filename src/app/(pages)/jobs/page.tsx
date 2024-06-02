@@ -27,17 +27,19 @@ export default function JobsPage() {
 
 	const nextPage = () => {
 		if (!isLoading) {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 			setPage(prevPage => prevPage + 1)
 		}
 	}
 	const previousPage = () => {
 		if (!isLoading && page !== 1) {
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 			setPage(prevPage => prevPage - 1)
 		}
 	}
 
 	return (
-		<div className='p-4 w-3/12'>
+		<div className='p-4 w-3/12 max-w-lg min-w-96'>
 			<Formik initialValues={{ query: '' }} onSubmit={handleSubmit}>
 				<Form className='mb-4'>
 					<TextInputs
@@ -52,14 +54,14 @@ export default function JobsPage() {
 
 			{error && <div>Failed to load jobs</div>}
 			{isLoading && <div>Loading...</div>}
-			{!data ?? (
+			{data && (
 				<div>
 					{data.data.map(job => (
 						<JobCard key={job.job_id} {...job} />
 					))}
-					<div className='flex m-5'>
-						<MyButton text='Next page' handle={nextPage} />
+					<div className='flex gap-5 justify-center'>
 						<MyButton text='Previous page' handle={previousPage} />
+						<MyButton text='Next page' handle={nextPage} />
 					</div>
 				</div>
 			)}
