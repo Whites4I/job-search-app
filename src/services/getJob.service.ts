@@ -47,6 +47,7 @@ class JobService {
 			(url: any) => this.fetcher(url, { query: query, page: page }),
 			{
 				shouldRetryOnError: false,
+				revalidateOnFocus: false,
 			}
 		)
 		return { data, error, mutate, isLoading }
@@ -64,6 +65,7 @@ class JobService {
 			(url: any) => this.fetcher(url, { job_id: jobId }),
 			{
 				shouldRetryOnError: false,
+				revalidateOnFocus: false,
 			}
 		)
 		return { data, error, mutate, isLoading }
