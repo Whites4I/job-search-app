@@ -4,9 +4,9 @@ import { API_KEY } from '../constants/API_KEY'
 import { API_URL } from '../constants/API_URL'
 
 class JobService {
-	apiKey: string
-	apiUrl: string
-	headers: { [key: string]: string }
+	private apiKey: string
+	private apiUrl: string
+	private headers: { [key: string]: string }
 
 	constructor(apiKey: string, apiUrl: string) {
 		this.apiKey = apiKey
@@ -45,24 +45,6 @@ class JobService {
 		}: { data: ISearchFetch; error: any; mutate: any; isLoading: any } = useSWR(
 			url,
 			(url: any) => this.fetcher(url, { query: query, page: page }),
-			{
-				shouldRetryOnError: false,
-				revalidateOnFocus: false,
-			}
-		)
-		return { data, error, mutate, isLoading }
-	}
-
-	getJobDetail(jobId: any | unknown | string) {
-		const url = `${this.apiUrl}/job-details?`
-		const {
-			data,
-			error,
-			mutate,
-			isLoading,
-		}: { data: ISearchFetch; error: any; mutate: any; isLoading: any } = useSWR(
-			url,
-			(url: any) => this.fetcher(url, { job_id: jobId }),
 			{
 				shouldRetryOnError: false,
 				revalidateOnFocus: false,

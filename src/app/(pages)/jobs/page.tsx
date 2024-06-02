@@ -10,14 +10,29 @@ import jobService from '../../../services/getJob.service'
 export default function JobsPage() {
 	const [query, setQuery] = useState('')
 	const [page, setPage] = useState(1)
+	const [profile, setProfile] = useState<IDataProfile>({
+		name: '',
+		aboutMe: '',
+		jobTitle: '',
+	})
 
 	const { data, error, isLoading, mutate } = jobService.getJobsData(
-		query ? `${query}` : 'null',
-		page ?? `${page}`
+		query ? query : 'null',
+		page ?? page
 	)
+	useEffect(() => {
+		const storedProfile = localStorage.getItem('profile')
+		if (storedProfile) {
+			const parsedProfile = JSON.parse(storedProfile)
+			setProfile(parsedProfile)
+			setQuery(parsedProfile.jobTitle)
+		}
+	}, [])
 
 	useEffect(() => {
-		mutate()
+		setTimeout(() => {
+			mutate()
+		}, 100)
 	}, [query, page, mutate])
 
 	const handleSubmit = useCallback(
@@ -52,7 +67,7 @@ export default function JobsPage() {
 						type='text'
 						placeholder='Search for jobs'
 					/>
-					<MyButton type='button' text='Search' />
+					<MyButton type='submit' text='Search' />
 				</Form>
 			</Formik>
 

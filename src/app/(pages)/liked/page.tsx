@@ -3,7 +3,7 @@
 import MyButton from '../../../components/button/MyButton'
 import useLikedJobs from '../../../hooks/useLikedJobs'
 
-const LikedJobs = () => {
+export default function LikedJobs() {
 	const { likedJobs, removeFromLiked } = useLikedJobs()
 
 	return (
@@ -38,5 +38,3 @@ const LikedJobs = () => {
 		</div>
 	)
 }
-
-export default LikedJobs

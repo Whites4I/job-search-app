@@ -1,6 +1,7 @@
 'use client'
 
 import { Form, Formik } from 'formik'
+import { useRouter } from 'next/navigation'
 import * as Yup from 'yup'
 import MyButton from '../../../components/button/MyButton'
 import TextInput from '../../../components/inputs/text-inputs/'
@@ -12,12 +13,15 @@ const ProfileSchema = Yup.object().shape({
 })
 
 export default function CreateProfile() {
+	const { push } = useRouter()
+
 	const handleSubmit = (values: {
 		name: string
 		jobTitle: string
 		aboutMe: string
 	}) => {
 		localStorage.setItem('profile', JSON.stringify(values))
+		push('/')
 	}
 
 	return (
