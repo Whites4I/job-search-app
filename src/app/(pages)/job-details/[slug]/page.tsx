@@ -12,7 +12,6 @@ export default function JobDetails() {
 	const { slug } = useParams<{ slug: string }>()
 	const [jobData, setJobData] = useState(null)
 
-	// Hooks should be called in the same order on every render
 	useEffect(() => {
 		const getJobData = async () => {
 			if (!slug || !cache) return
@@ -30,16 +29,15 @@ export default function JobDetails() {
 		getJobData()
 	}, [slug, cache])
 
-	// Destructure the hook after all useState and useEffect hooks
 	const { isLiked, addToLiked, removeFromLiked } = useLikedJobs()
 
 	if (!jobData) return <div>Loading...</div>
 
-	const { job_description, job_title, employer_logo, job_id } = jobData
+	const { job_description, job_title, employer_logo } = jobData
 
 	const toggleLike = () => {
-		if (isLiked(job_id)) {
-			removeFromLiked(job_id)
+		if (isLiked(jobData)) {
+			removeFromLiked(jobData)
 		} else {
 			addToLiked(jobData)
 		}
@@ -50,9 +48,10 @@ export default function JobDetails() {
 			<h1 className='text-2xl font-bold'>{job_title}</h1>
 			{employer_logo && (
 				<Image
+					width={200}
 					src={employer_logo}
 					alt={job_title}
-					className='my-4 h-64 object-cover rounded w-40'
+					className='my-4 h-64 object-cover rounded '
 				/>
 			)}
 
@@ -60,7 +59,7 @@ export default function JobDetails() {
 			<div className='flex'>
 				<MyButton
 					handle={toggleLike}
-					text={isLiked(job_id) ? 'Remove from Liked' : 'Add to Liked'}
+					text={isLiked(jobData) ? 'Remove from Liked' : 'Add to Liked'}
 				/>
 			</div>
 		</div>
