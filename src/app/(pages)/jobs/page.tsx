@@ -1,7 +1,7 @@
 'use client'
 
 import { Form, Formik } from 'formik'
-import { useEffect, useState } from 'react'
+import { SetStateAction, useCallback, useEffect, useState } from 'react'
 import MyButton from '../../../components/button/MyButton'
 import JobCard from '../../../components/cards/job-card'
 import TextInputs from '../../../components/inputs/text-inputs'
@@ -18,30 +18,34 @@ export default function JobsPage() {
 
 	useEffect(() => {
 		mutate()
-	}, [query, page])
+	}, [query, page, mutate])
 
-	const handleSubmit = (values: { query: string }) => {
-		setQuery(values.query)
-		setPage(1)
-	}
+	const handleSubmit = useCallback(
+		(values: { query: SetStateAction<string> }) => {
+			setQuery(values.query)
+			setPage(1)
+		},
+		[]
+	)
 
-	const nextPage = () => {
+	const nextPage = useCallback(() => {
 		if (!isLoading) {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
 			setPage(prevPage => prevPage + 1)
 		}
-	}
-	const previousPage = () => {
+	}, [isLoading])
+
+	const previousPage = useCallback(() => {
 		if (!isLoading && page !== 1) {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
 			setPage(prevPage => prevPage - 1)
 		}
-	}
+	}, [isLoading, page])
 
 	return (
 		<div className='p-4 w-3/12 max-w-lg min-w-96'>
 			<Formik initialValues={{ query: '' }} onSubmit={handleSubmit}>
-				<Form className='mb-4  text-black'>
+				<Form className='mb-4 text-black'>
 					<TextInputs
 						className='p-2 border rounded w-full'
 						name='query'
@@ -52,18 +56,22 @@ export default function JobsPage() {
 				</Form>
 			</Formik>
 
-			{error && <div>Failed to load jobs</div>}
-			{isLoading && <div>Loading...</div>}
-			{data && (
-				<div>
-					{data.data.map(job => (
-						<JobCard key={job.job_id} {...job} />
-					))}
-					<div className='flex gap-5 justify-center'>
-						<MyButton text='Previous page' handle={previousPage} />
-						<MyButton text='Next page' handle={nextPage} />
+			{error ? (
+				<div>Failed to load jobs</div>
+			) : isLoading ? (
+				<div>Loading...</div>
+			) : (
+				data && (
+					<div>
+						{data.data.map(job => (
+							<JobCard key={job.job_id} {...job} />
+						))}
+						<div className='flex gap-5 justify-center'>
+							<MyButton text='Previous page' handle={previousPage} />
+							<MyButton text='Next page' handle={nextPage} />
+						</div>
 					</div>
-				</div>
+				)
 			)}
 		</div>
 	)

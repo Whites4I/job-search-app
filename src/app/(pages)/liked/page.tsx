@@ -27,7 +27,7 @@ const LikedJobs = () => {
 								<MyButton
 									text='Remove'
 									style={{ width: '100px' }}
-									handle={() => removeFromLiked(job.job_id)}
+									handle={() => removeFromLiked(job)}
 								/>
 							</div>
 						</div>

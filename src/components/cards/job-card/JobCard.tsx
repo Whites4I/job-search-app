@@ -6,8 +6,8 @@ export default function JobCard(job: IDataJob) {
 	const { isLiked, addToLiked, removeFromLiked } = useLikedJobs()
 
 	const toggleLike = () => {
-		if (isLiked(job.job_id)) {
-			removeFromLiked(job.job_id)
+		if (isLiked(job)) {
+			removeFromLiked(job)
 		} else {
 			addToLiked(job)
 		}
@@ -28,7 +28,7 @@ export default function JobCard(job: IDataJob) {
 				</Link>
 				<MyButton
 					handle={toggleLike}
-					text={isLiked(job.job_id) ? 'Remove Liked' : 'Add to Liked'}
+					text={isLiked(job) ? 'Remove Liked' : 'Add to Liked'}
 				/>
 			</div>
 		</div>

@@ -1,29 +1,27 @@
 import { useEffect, useState } from 'react'
 
 export default function useLikedJobs() {
-	const [likedJobs, setLikedJobs] = useState<any[]>([])
+	const [likedJobs, setLikedJobs] = useState<IDataJob[]>(() => {
+		const storedJobs = localStorage.getItem('likedJobs')
+		return storedJobs ? JSON.parse(storedJobs) : []
+	})
 
 	useEffect(() => {
-		const storedJobs = localStorage.getItem('likedJobs')
-		if (storedJobs) {
-			setLikedJobs(JSON.parse(storedJobs))
-		}
-	}, [])
+		localStorage.setItem('likedJobs', JSON.stringify(likedJobs))
+	}, [likedJobs])
 
-	const addToLiked = (job: any) => {
-		const updatedJobs = [...likedJobs, job]
-		setLikedJobs(updatedJobs)
-		localStorage.setItem('likedJobs', JSON.stringify(updatedJobs))
+	const addToLiked = (job: IDataJob) => {
+		setLikedJobs(prevJobs => [...prevJobs, job])
 	}
 
-	const removeFromLiked = (jobId: string) => {
-		const updatedJobs = likedJobs.filter((job: any) => job.job_id !== jobId)
-		setLikedJobs(updatedJobs)
-		localStorage.setItem('likedJobs', JSON.stringify(updatedJobs))
+	const removeFromLiked = (getJob: IDataJob) => {
+		setLikedJobs(prevJobs =>
+			prevJobs.filter((job: IDataJob) => job.job_id !== getJob.job_id)
+		)
 	}
 
-	const isLiked = (jobId: string) => {
-		return likedJobs.some((job: any) => job.job_id === jobId)
+	const isLiked = (getJob: IDataJob) => {
+		return likedJobs.some((job: IDataJob) => job.job_id === getJob.job_id)
 	}
 
 	return {
