@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 
+function getInitialLikedJobs(): IDataJob[] {
+	const storedJobs = localStorage.getItem('likedJobs')
+	return storedJobs ? JSON.parse(storedJobs) : []
+}
+
 export default function useLikedJobs() {
-	const [likedJobs, setLikedJobs] = useState<IDataJob[]>(() => {
-		const storedJobs = localStorage.getItem('likedJobs')
-		return storedJobs ? JSON.parse(storedJobs) : []
-	})
+	const [likedJobs, setLikedJobs] = useState<IDataJob[]>(getInitialLikedJobs)
 
 	useEffect(() => {
 		localStorage.setItem('likedJobs', JSON.stringify(likedJobs))
@@ -14,14 +16,14 @@ export default function useLikedJobs() {
 		setLikedJobs(prevJobs => [...prevJobs, job])
 	}
 
-	const removeFromLiked = (getJob: IDataJob) => {
+	const removeFromLiked = (job: IDataJob) => {
 		setLikedJobs(prevJobs =>
-			prevJobs.filter((job: IDataJob) => job.job_id !== getJob.job_id)
+			prevJobs.filter((j: IDataJob) => j.job_id !== job.job_id)
 		)
 	}
 
-	const isLiked = (getJob: IDataJob) => {
-		return likedJobs.some((job: IDataJob) => job.job_id === getJob.job_id)
+	const isLiked = (job: IDataJob) => {
+		return likedJobs.some((j: IDataJob) => j.job_id === job.job_id)
 	}
 
 	return {
