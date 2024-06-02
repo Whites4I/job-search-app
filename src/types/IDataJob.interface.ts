@@ -5,4 +5,5 @@ interface IDataJob {
 	job_description: string
 	employer_logo?: string
 	job_country?: string
+	job_employment_type?: string
 }

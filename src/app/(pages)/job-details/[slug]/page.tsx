@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSWRConfig } from 'swr'
@@ -33,7 +32,7 @@ export default function JobDetails() {
 
 	if (!jobData) return <div>Loading...</div>
 
-	const { job_description, job_title, employer_logo } = jobData
+	const { job_description, job_title } = jobData
 
 	const toggleLike = () => {
 		if (isLiked(jobData)) {
@@ -46,14 +45,6 @@ export default function JobDetails() {
 	return (
 		<div className='p-4 container'>
 			<h1 className='text-2xl font-bold'>{job_title}</h1>
-			{employer_logo && (
-				<Image
-					width={200}
-					src={employer_logo}
-					alt={job_title}
-					className='my-4 h-64 object-cover rounded '
-				/>
-			)}
 
 			<p className='text-gray-500'>{job_description}</p>
 			<div className='flex'>

@@ -1,6 +1,6 @@
 'use client'
 
-import MyButton from '../../../components/button/MyButton'
+import LikedCard from '../../../components/cards/liked-card'
 import useLikedJobs from '../../../hooks/useLikedJobs'
 
 export default function LikedJobs() {
@@ -14,24 +14,7 @@ export default function LikedJobs() {
 			) : (
 				<div>
 					{likedJobs.map(job => (
-						<div key={job.job_id} className='p-4 border rounded shadow-md mb-4'>
-							<h2 className='text-xl font-bold'>{job.job_title}</h2>
-							<p className='text-gray-400'>{job.employer_name}</p>
-							<p className='text-gray-400'>{job.job_country}</p>
-							<p className='text-gray-300 mt-2'>
-								{job.job_description.length > 700
-									? job.job_description.substring(0, 700) + '...'
-									: job.job_description}
-							</p>
-							<div className='flex justify-end'>
-								<MyButton
-									type='button'
-									text='Remove'
-									style={{ width: '100px' }}
-									handle={() => removeFromLiked(job)}
-								/>
-							</div>
-						</div>
+						<LikedCard job={job} handle={removeFromLiked(job)} />
 					))}
 				</div>
 			)}
