@@ -14,7 +14,11 @@ export default function LikedJobs() {
 			) : (
 				<div>
 					{likedJobs.map(job => (
-						<LikedCard job={job} handle={() => removeFromLiked(job)} />
+						<LikedCard
+							key={job.job_id}
+							job={job}
+							handle={() => removeFromLiked(job)}
+						/>
 					))}
 				</div>
 			)}

@@ -1,14 +1,14 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 
-function getInitialLikedJobs(): IDataJob[] {
-	const storedJobs = localStorage.getItem('likedJobs')
-	return storedJobs ? JSON.parse(storedJobs) : []
-}
-
 export default function useLikedJobs() {
-	const [likedJobs, setLikedJobs] = useState<IDataJob[]>(getInitialLikedJobs)
+	const [likedJobs, setLikedJobs] = useState<IDataJob[]>([])
+
+	useEffect(() => {
+		const storedJobs = localStorage.getItem('likedJobs')
+		if (storedJobs) {
+			setLikedJobs(JSON.parse(storedJobs))
+		}
+	}, [])
 
 	useEffect(() => {
 		localStorage.setItem('likedJobs', JSON.stringify(likedJobs))
