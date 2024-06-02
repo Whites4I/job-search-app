@@ -25,6 +25,7 @@ const LikedJobs = () => {
 							</p>
 							<div className='flex justify-end'>
 								<MyButton
+									type='button'
 									text='Remove'
 									style={{ width: '100px' }}
 									handle={() => removeFromLiked(job)}

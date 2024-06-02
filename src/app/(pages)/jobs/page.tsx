@@ -52,7 +52,7 @@ export default function JobsPage() {
 						type='text'
 						placeholder='Search for jobs'
 					/>
-					<MyButton text='Search' />
+					<MyButton type='button' text='Search' />
 				</Form>
 			</Formik>
 
@@ -67,8 +67,12 @@ export default function JobsPage() {
 							<JobCard key={job.job_id} {...job} />
 						))}
 						<div className='flex gap-5 justify-center'>
-							<MyButton text='Previous page' handle={previousPage} />
-							<MyButton text='Next page' handle={nextPage} />
+							<MyButton
+								type='button'
+								text='Previous page'
+								handle={previousPage}
+							/>
+							<MyButton type='button' text='Next page' handle={nextPage} />
 						</div>
 					</div>
 				)

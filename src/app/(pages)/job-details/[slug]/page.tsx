@@ -58,6 +58,7 @@ export default function JobDetails() {
 			<p className='text-gray-500'>{job_description}</p>
 			<div className='flex'>
 				<MyButton
+					type='button'
 					handle={toggleLike}
 					text={isLiked(jobData) ? 'Remove from Liked' : 'Add to Liked'}
 				/>
