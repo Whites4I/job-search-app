@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+----- Hi! -----
 
-## Getting Started
+- Folder structure. At the beginning of development, a folder structure was created to better visualize future work.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Created a job vacancy card and a page for them. Created a job vacancy card component and a button component for future use, as well as a page to display cards with an input component for future job search functionality.
+  
+- API service created. A service for fetching data from the API was created to populate the cards with corresponding information. AXIOS and useSWR were used.
+  
+- Pagination. Pagination capability added to the job vacancy cards page. Built-in API pagination was used.
+  
+- Creation of slug and liked hook. Created a slug for detailed viewing of job vacancy information from the card and a hook that allows saving vacancies in LOCALSTORAGE for future use.
+  
+- Created a page for saved vacancies. Created a card component for saved vacancies.
+  
+- Created a profile creation page with data storage. The profile is stored in LOCALSTORAGE. Formik was used to create the form and validation with Yup.
+  
+- Added recommendation loading based on saved profile data. Added functionality that provides recommendations for job vacancies based on the saved profile.
+  
+- Fixed bugs and added some features.
