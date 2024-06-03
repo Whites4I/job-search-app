@@ -58,7 +58,7 @@ export default function JobsPage() {
 	}, [isLoading, page])
 
 	return (
-		<div className=' sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 max-w-lg w-min  '>
+		<div className=' sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 max-w-lg  '>
 			<Formik initialValues={{ query: '' }} onSubmit={handleSubmit}>
 				<Form className=' w-full mb-4 text-black'>
 					<TextInputs
