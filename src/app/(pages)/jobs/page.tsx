@@ -58,9 +58,9 @@ export default function JobsPage() {
 	}, [isLoading, page])
 
 	return (
-		<div className='p-4 w-3/12 max-w-lg min-w-96'>
+		<div className=' sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 max-w-lg w-min  '>
 			<Formik initialValues={{ query: '' }} onSubmit={handleSubmit}>
-				<Form className='mb-4 text-black'>
+				<Form className='w-auto mb-4 text-black'>
 					<TextInputs
 						className='p-2 border rounded w-full'
 						name='query'
@@ -81,7 +81,8 @@ export default function JobsPage() {
 						{data.data.map(job => (
 							<JobCard key={job.job_id} {...job} />
 						))}
-						<div className='flex gap-5 justify-center'>
+
+						<div className='flex gap-5 justify-center mt-4'>
 							<MyButton
 								type='button'
 								text='Previous page'

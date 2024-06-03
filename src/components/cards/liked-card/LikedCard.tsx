@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MyButton from '../../button/MyButton'
 interface ILikedCard {
 	job: IDataJob
@@ -12,17 +13,21 @@ export default function LikedCard({ job, handle }: ILikedCard) {
 			<p className='text-gray-400'>{job.employer_name}</p>
 			<p className='text-gray-400'>{job.job_country}</p>
 			<p className='text-gray-300 mt-2'>
-				{job.job_description.length > 700
-					? job.job_description.substring(0, 700) + '...'
+				{job.job_description.length > 200
+					? job.job_description.substring(0, 200) + '...'
 					: job.job_description}
 			</p>
-			<div className='flex justify-end'>
+			<div className='flex justify-around'>
 				<MyButton
 					type='button'
 					text='Remove'
 					style={{ width: '100px' }}
 					handle={handle}
 				/>
+
+				<Link href={`/job-details/${job.job_id}`}>
+					<MyButton text='Details' />
+				</Link>
 			</div>
 		</div>
 	)
