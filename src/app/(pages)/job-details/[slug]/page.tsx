@@ -47,7 +47,7 @@ export default function JobDetails() {
 			<h1 className='text-2xl font-bold'>{job_title}</h1>
 
 			<p className='text-gray-500'>{job_description}</p>
-			<div className='flex'>
+			<div className='flex justify-end'>
 				<MyButton
 					type='button'
 					handle={toggleLike}
