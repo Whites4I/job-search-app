@@ -17,17 +17,16 @@ export default function LikedCard({ job, handle }: ILikedCard) {
 					? job.job_description.substring(0, 200) + '...'
 					: job.job_description}
 			</p>
-			<div className='flex justify-around'>
+			<div className='flex justify-between'>
+				<Link href={`/job-details/${job.job_id}`}>
+					<MyButton text='Details' />
+				</Link>
 				<MyButton
 					type='button'
 					text='Remove'
 					style={{ width: '100px' }}
 					handle={handle}
 				/>
-
-				<Link href={`/job-details/${job.job_id}`}>
-					<MyButton text='Details' />
-				</Link>
 			</div>
 		</div>
 	)
