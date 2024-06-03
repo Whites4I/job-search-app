@@ -17,3 +17,5 @@
 - Added recommendation loading based on saved profile data. Added functionality that provides recommendations for job vacancies based on the saved profile.
   
 - Fixed bugs and added some features.
+
+LINK: https://job-search-app-sage.vercel.app/
